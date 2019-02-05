@@ -9,10 +9,8 @@ public class Start {
 		try {
 			RevOps = new ReverseOperatorsInIf();
 			String code = "class A{ void B(){ if(1==1) { System.out.println(\"1 equals 1\"); } } }";
-//			String code = "class A{ void B(){ if(1==1) { if(\"a\" == \"a\") {System.out.println(\"1 equals 1\"); } } }";
-//			String code = "class A{ void B(){ if(1==1 && 2==2) { if(\"a\" == \"a\") {System.out.println(\"1 equals 1\"); } } }";
-//			String code = "class A{ void B(){ if(1==1 && 2==2) {} else { if(\"a\" == \"a\") {System.out.println(\"1 equals 1\"); } } }";
-//			String code = "class A{ void B(){ if(1==1 && 2==2) {} else if(3 ==3) { if(\"a\" == \"a\") {System.out.println(\"1 equals 1\"); } } else {} }";
+			System.out.println(RevOps.RevOpsInIf(code));
+			
 //			String code = "class SampleClass {public XYDataItem addOrUpdate(Number x, Number y) {\r\n"
 //					+ "    if (x == null) {\r\n"
 //					+ "        throw new IllegalArgumentException(\"Null 'x' argument.\");\r\n" + "    }\r\n"
@@ -29,7 +27,7 @@ public class Start {
 //					+ "        if (getItemCount() > this.maximumItemCount) {\r\n"
 //					+ "            this.data.remove(0);\r\n" + "        }\r\n" + "    }\r\n"
 //					+ "    fireSeriesChanged();\r\n" + "    return overwritten;\r\n" + "} }";
-			System.out.println(RevOps.RevOpsInIf(code));
+//			System.out.println(RevOps.RevOpsInIf(code));
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
