@@ -1,0 +1,12 @@
+import spoon.Launcher;
+import spoon.reflect.declaration.CtClass;
+
+/** outputs hello world by self compile-time introspection */
+public class Start {
+	
+	public void StartHere() {
+		CtClass<?> l = Launcher.parseClass("class A { void m() { System.out.println(\"yeah\");} }");
+		System.out.println(l.getLabel());
+	}
+	
+}

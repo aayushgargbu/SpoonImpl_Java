@@ -1,0 +1,14 @@
+import spoon.Launcher;
+import spoon.reflect.declaration.CtClass;
+import spoon.reflect.declaration.CtType;
+
+public class Start {
+
+	public static void main(String[] args) {
+		CtClass<?> l = Launcher.parseClass("class A { void m() { System.out.println(\"yeah\");} }");
+		System.out.println(l);
+		CtType<?> type = (CtType<?>) l.getFactory().Type();
+		System.out.println(l);
+	}
+
+}

@@ -1,0 +1,45 @@
+import java.util.List;
+import java.util.Set;
+import spoon.Launcher;
+import spoon.reflect.code.BinaryOperatorKind;
+import spoon.reflect.code.CtStatement;
+import spoon.reflect.declaration.CtClass;
+import spoon.reflect.declaration.CtMethod;
+import spoon.support.reflect.code.CtBinaryOperatorImpl;
+import spoon.support.reflect.code.CtIfImpl;
+
+public class Start {
+
+	public static void main(String[] args) {
+		CtClass<?> l = Launcher.parseClass("class A { void m() { if(\"a\" == \"a\") {System.out.println(\"yeah\");}} }");
+		Set<CtMethod<?>> methods = l.getAllMethods();
+		for(CtMethod<?> method: methods) {
+			List<CtStatement> statements = method.getBody().getStatements();
+			if(statements.size() > 0) {
+				for(CtStatement statement: statements) {
+					if(statement.getClass().getTypeName() == CtIfImpl.class.getTypeName()) {
+						CtIfImpl ifImpl = (CtIfImpl) statement;
+						CtBinaryOperatorImpl<?> binaryOperatorImpl =  (CtBinaryOperatorImpl<?>)ifImpl.getCondition();
+						BinaryOperatorKind kind =  binaryOperatorImpl.getKind();
+						kind = ReverseBinaryOperatorKind(kind);
+						System.out.println(kind);
+						binaryOperatorImpl.setKind(kind);
+					}
+				}
+			}
+		}
+		System.out.println(l);
+	}
+	
+	private static BinaryOperatorKind ReverseBinaryOperatorKind(BinaryOperatorKind originalKind){
+		BinaryOperatorKind reverseKind;
+		switch(originalKind) {
+		case EQ:
+			reverseKind = BinaryOperatorKind.NE;
+			break;
+		default:
+			reverseKind = originalKind; break;
+		}
+		return reverseKind;
+	}
+}

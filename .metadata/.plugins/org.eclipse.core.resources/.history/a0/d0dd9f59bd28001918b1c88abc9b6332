@@ -1,0 +1,21 @@
+import java.util.List;
+
+import spoon.Launcher;
+import spoon.reflect.declaration.CtClass;
+import spoon.reflect.declaration.CtType;
+import spoon.reflect.declaration.CtTypeMember;
+
+public class Start {
+
+	public static void main(String[] args) {
+		CtClass<?> l = Launcher.parseClass("class A { void m() { if(\"a\" == \"a\") {System.out.println(\"yeah\");}} }");
+		System.out.println(l);
+		List<CtType<?>> types = l.getFactory().Type().getAll();
+		for (CtType<?> type : types) {
+			for(CtTypeMember typeMember: type.getTypeMembers()) {
+				System.out.println(typeMember);
+			}
+		}
+	}
+
+}
